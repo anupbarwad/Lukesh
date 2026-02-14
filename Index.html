@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Happy Valentine's Day Lukesh 💖</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ff4d6d,#ff9a9e,#ffd6e0);
+  background-size:300% 300%;
+  animation:bg 8s ease infinite;
+}
+
+@keyframes bg{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* Card */
+.card{
+  width:90%;
+  max-width:360px;
+  padding:30px 20px;
+  border-radius:25px;
+  text-align:center;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(15px);
+  color:white;
+  box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+h1{
+  font-size:1.6rem;
+  margin-bottom:10px;
+}
+
+.name{
+  font-size:2.2rem;
+  font-weight:bold;
+  margin:10px 0;
+  animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px #fff;}
+  to{text-shadow:0 0 25px #fff;}
+}
+
+p{
+  font-size:1rem;
+  margin:15px 0 25px;
+}
+
+button{
+  width:120px;
+  padding:12px;
+  margin:8px;
+  border:none;
+  border-radius:30px;
+  font-size:1rem;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.yes{
+  background:white;
+  color:#ff4d6d;
+}
+
+.yes:active{
+  transform:scale(1.1);
+}
+
+.no{
+  background:#eee;
+  color:#333;
+  position:relative;
+}
+
+/* Floating hearts */
+.heart{
+  position:absolute;
+  font-size:16px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh) scale(0);}
+  100%{transform:translateY(-10vh) scale(1.5);}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Happy Valentine’s Day 💖</h1>
+  <div class="name">Lukesh 💕</div>
+  <p>
+    You are my favorite person,  
+    my biggest smile,  
+    and my sweetest forever ❤️
+  </p>
+
+  <button class="yes" onclick="sayYes()">Yes 💍</button>
+  <button class="no" ontouchstart="moveNo()">No 🙈</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+function sayYes(){
+  confetti({
+    particleCount:300,
+    spread:140,
+    origin:{y:0.6}
+  });
+
+  document.body.innerHTML=`
+  <div style="
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:linear-gradient(135deg,#ff4d6d,#ff9a9e);
+  color:white;
+  padding:20px;">
+    <h1 style="font-size:2.2rem;">I Love You Lukesh 💕🥰</h1>
+    <p style="font-size:1.2rem;margin-top:15px;">
+      Thank you for being my Valentine ❤️
+    </p>
+  </div>`;
+}
+
+function moveNo(){
+  const btn=document.querySelector('.no');
+  btn.style.position='absolute';
+  btn.style.left=Math.random()*70+'%';
+  btn.style.top=Math.random()*70+'%';
+}
+
+/* Floating Hearts */
+function createHeart(){
+  const heart=document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML='💖';
+  heart.style.left=Math.random()*100+'vw';
+  heart.style.animationDuration=(Math.random()*3+3)+'s';
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,500);
+</script>
+
+</body>
+</html>
